@@ -1,0 +1,75 @@
+/*
+Lab 2 - Epx 2 
+Mudassir Iqbal Mohammed 
+DIGF 2B03 Physical Computing S01
+OCAD University
+Created on [ Jan 18 2015]
+Based on:
+Code created my myself and the help of Parth Soni 
+*/
+
+
+int ledSwitches = 0; // int counts # of button presses
+
+// LED int s
+int redLed = 9;
+int yellowLed = 10;
+int greenLed = 11;
+
+int switchInput = 8;
+
+int brightness = 0;
+int fadeAmount = 5; 
+
+
+
+
+void setup () {
+  
+  pinMode (switchInput, INPUT_PULLUP);
+  pinMode (redLed, OUTPUT);
+  pinMode (yellowLed, OUTPUT);
+  pinMode (greenLed, OUTPUT);
+
+}
+
+void loop () {
+  int sensorValues = digitalRead(switchInput);
+
+// starts with LED's turned off and create if statements which will determine the led that is functioning 
+  if (sensorValues == LOW){
+
+    if (ledSwitches == 0){
+      //redLEDFade(); 
+      digitalWrite (redLed, HIGH); 
+      digitalWrite (greenLed, LOW);
+      digitalWrite (yellowLed, LOW);
+     
+
+    }
+    if (ledSwitches == 1){
+      digitalWrite (redLed, LOW);
+      digitalWrite (greenLed, HIGH);
+      digitalWrite (yellowLed, LOW);
+   
+
+    }
+
+    if (ledSwitches == 2){
+      digitalWrite (redLed, LOW);
+      digitalWrite (greenLed, LOW);
+      digitalWrite (yellowLed, HIGH);
+ 
+    }
+
+//if button is pressed more than three time, revert back to first press action(0)
+    ledSwitches++;
+    if (ledSwitches > 2){
+      ledSwitches = 0;
+    }
+      delay (500);
+  }
+  
+ 
+ 
+}
